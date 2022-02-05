@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net5Mysql", "Net5Mysql\Net5Mysql.csproj", "{8EB77AAC-2298-4DA9-881B-4C63EACEEDC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net5Mysql.API", "Net5Mysql.API\Net5Mysql.API.csproj", "{B2F977C5-7B23-47BC-A90A-B092E2EB9729}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EB77AAC-2298-4DA9-881B-4C63EACEEDC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB77AAC-2298-4DA9-881B-4C63EACEEDC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB77AAC-2298-4DA9-881B-4C63EACEEDC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB77AAC-2298-4DA9-881B-4C63EACEEDC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F977C5-7B23-47BC-A90A-B092E2EB9729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F977C5-7B23-47BC-A90A-B092E2EB9729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F977C5-7B23-47BC-A90A-B092E2EB9729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F977C5-7B23-47BC-A90A-B092E2EB9729}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A06E632-0A61-41C5-AB52-00586F348E40}
+	EndGlobalSection
+EndGlobal
