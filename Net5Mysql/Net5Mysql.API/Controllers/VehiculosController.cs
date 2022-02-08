@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Net5Mysql.API.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Net5Mysql.API.Controllers
 {
@@ -23,6 +23,7 @@ namespace Net5Mysql.API.Controllers
 
         
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<IEnumerable<Vehiculo>>> GetVehiculos()
         {
             return await _context.Vehiculos.Where(data=> data.estado == "A")
@@ -31,6 +32,7 @@ namespace Net5Mysql.API.Controllers
 
         
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Vehiculo>> GetVehiculo(int id)
         {
             var vehiculo = await _context.Vehiculos.FindAsync(id);
@@ -45,6 +47,7 @@ namespace Net5Mysql.API.Controllers
 
         
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PutVehiculo(int id, Vehiculo vehiculo)
         {
             if (id != vehiculo.VehiculoId)
@@ -75,6 +78,7 @@ namespace Net5Mysql.API.Controllers
 
        
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Vehiculo>> PostVehiculo(Vehiculo vehiculo)
         {
             _context.Vehiculos.Add(vehiculo);
@@ -85,6 +89,7 @@ namespace Net5Mysql.API.Controllers
 
         
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteVehiculo(int id)
         {
             var vehiculo = await _context.Vehiculos.FindAsync(id);
