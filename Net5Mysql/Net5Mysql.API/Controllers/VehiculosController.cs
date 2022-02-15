@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Net5Mysql.API.Models;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Net5Mysql.API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class VehiculosController : ControllerBase
@@ -21,18 +23,19 @@ namespace Net5Mysql.API.Controllers
             _context = context;
         }
 
-        
+        [EnableCors("PolicyAllow")]
         [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<IEnumerable<Vehiculo>>> GetVehiculos()
         {
             return await _context.Vehiculos.Where(data=> data.estado == "A")
                                                  .Include(d => d.Marca).ToListAsync();
         }
 
-        
+
+        [EnableCors("PolicyCordillera")]
         [HttpGet("{id}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Vehiculo>> GetVehiculo(int id)
         {
             var vehiculo = await _context.Vehiculos.FindAsync(id);

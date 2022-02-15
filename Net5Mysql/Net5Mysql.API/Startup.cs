@@ -32,6 +32,36 @@ namespace Net5Mysql.API
                                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             //End Service Mysql
+
+            //Service Cors
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "PolicyAllow",
+                    builder => builder.AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod());
+
+                options.AddPolicy(name: "PolicyCordillera",
+                    builder => builder.WithOrigins("https://cordillera.edu.ec", "https://186.91.2.150")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod());
+
+                options.AddPolicy(name: "PolicyBancoPichincha",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://pichincha.com", "https://186.60.2.100")
+                        .AllowAnyHeader()
+                        .WithMethods("GET");
+                    });
+            }
+            );
+
+
+            //End Service Cors
+
+
+            //Service JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -48,10 +78,6 @@ namespace Net5Mysql.API
                         System.Text.Encoding.UTF8.GetBytes(Configuration["JWT:Clave"]))
                     };
                 });
-            //Service JWT
-
-
-
             //End Service JWT
 
 
@@ -71,10 +97,13 @@ namespace Net5Mysql.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Net5Mysql.API v1"));
             }
+            app.UseRouting();
+            app.UseCors();
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
 
             app.UseAuthorization();
 
